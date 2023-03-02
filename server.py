@@ -5,7 +5,7 @@ import os
 
 import urllib.parse
 
-from flask import Flask, jsonify
+from flask import Flask, jsonify, render_template
 from flask_cors import CORS
 
 from dotenv import dotenv_values
@@ -40,5 +40,10 @@ def get_database():  # pylint: disable=missing-function-docstring
             return jsonify(cur.fetchall())
 
 
+@app.route("/")
+def index():  # pylint: disable=missing-function-docstring
+    return render_template("index.html")
+
+
 if __name__ == "__main__":
-    app.run(host="0.0.0.0", port=5000)
+    app.run(port=80)
